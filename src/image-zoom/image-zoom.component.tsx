@@ -310,6 +310,16 @@ export default class ImageViewer extends React.Component<ImageZoomProps, ImageZo
           // 如果图片高度大于盒子高度， 可以纵向弹性拖拽
           if (this.props.imageHeight * this.scale > this.props.cropHeight) {
             this.positionY += diffY / this.scale;
+//             this.animatedPositionY.setValue(this.positionY);
+            if (this.props.blockBounces) {
+              const verticalMax = (this.props.imageHeight * this.scale - this.props.cropHeight) / 2 / this.scale;
+              if (this.positionY < -verticalMax) {
+                this.positionY = -verticalMax;
+              }
+              else if (this.positionY > verticalMax) {
+                this.positionY = verticalMax;
+              }
+            }
             this.animatedPositionY.setValue(this.positionY);
 
             // 如果图片上边缘脱离屏幕上边缘，则进入 swipeDown 动作
