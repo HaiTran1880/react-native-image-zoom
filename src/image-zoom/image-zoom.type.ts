@@ -23,6 +23,9 @@ export interface IOnClick {
 }
 
 export class ImageZoomProps {
+  
+  public blockBounces: boolean = false;
+  
   /**
    * 操作区域宽度
    */
